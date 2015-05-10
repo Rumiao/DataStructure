@@ -1,11 +1,7 @@
 #include <cassert>
 #include "list.hpp"
 
-
-
 /* Sequential list implementation */
-
-const int defaultSize = 233;
 
 template <typename T>
 class AList : public List<T> {
