@@ -91,7 +91,6 @@ class LList : public List<T> {
         }
 
         void next() {                                       // Move curr one step right, no change if already at end
-
             if (curr != tail) {
                 curr = curr->next;
             }

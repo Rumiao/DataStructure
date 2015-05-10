@@ -1,4 +1,4 @@
 #### About
 ---
 
-Write common DataStructure with c++
+Common DataStructure implementation use c++
