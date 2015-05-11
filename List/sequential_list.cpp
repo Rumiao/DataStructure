@@ -1,7 +1,19 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
 #include <cassert>
 #include "list.hpp"
 
 /* Sequential list implementation */
+
+const int defaultSize = 100;
+
+void Assert(bool val, std::string message) {            // If val is not true, send a failed message and exit
+    if (!val) {
+        std::cout << "Assertion Failed: " << message << std::endl;
+        exit(-1);
+    }
+}
 
 template <typename T>
 class AList : public List<T> {
@@ -27,7 +39,7 @@ class AList : public List<T> {
         }
 
         void insert(const T& it) {          // Insert "it" at current position
-            assert(listSize < maxSize, "List capacity exceeded");
+            Assert(listSize < maxSize, "List capacity exceeded");
             for (int i = listSize; i > curr; --i) {         // Shift elements up to make room
                 listArray[i] = listArray[i - 1];
             }
@@ -36,12 +48,12 @@ class AList : public List<T> {
         }
 
         void append(const T& it) {          // Append "it"
-            assert(listSize < maxSize, "List capacity exceeded");
+            Assert(listSize < maxSize, "List capacity exceeded");
             listArray[listSize++] = it;
         }
 
         T remove() {
-            assert((curr >= 0) && (curr < listSize), "No element");
+            Assert((curr >= 0) && (curr < listSize), "No element");
             T it = listArray[curr];         // Copy the element
             for (int i = curr; i < listSize - 1; ++i) {     // Shift them down
                 listArray[i] = listArray[i + 1];
@@ -59,12 +71,13 @@ class AList : public List<T> {
         int currPos() const { return curr; }        // Return current position
 
         void moveToPos(int pos) {                   // Set current list position to "pos"
-            assert((pos >= 0) && (pos <= listSize), "Pos out of range");
+            Assert((pos >= 0) && (pos <= listSize), "Pos out of range");
             curr = pos;
         }
 
-        const T& getValue() const {                 // Return current element
-            assert((pos >= 0) && (pos < listSize), "No current elements");
+        const T& getValue(int pos) const {                 // Return current element
+            Assert((pos >= 0) && (pos < listSize), "No current elements");
             return listArray[curr];
         }
 };
+

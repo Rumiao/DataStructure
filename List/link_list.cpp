@@ -1,7 +1,19 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
 #include <cassert>
 #include "list.hpp"
 
 /* linked list implementation */
+
+const int defaultSize = 100;
+
+void Assert(bool val, std::string message) {            // If val is not true, send a failed message and exit
+    if (!val) {
+        std::cout << "Assertion Failed: " << message << std::endl;
+        exit(-1);
+    }
+}
 
 template <typename T>
 class Link {            // Singly linked list node
@@ -59,7 +71,7 @@ class LList : public List<T> {
         }
 
         T remove() {                                        // Remove and return current element
-            assert(curr->next != 0, "No element");
+            Assert(curr->next != 0, "No element");
             T it = curr->next->element;                     // Remember value
             Link<T>* ltemp = curr->next;                    // Remember link node
             if (tail == curr->next) {                       // Reset tail
@@ -110,7 +122,7 @@ class LList : public List<T> {
         }
 
         void moveToPos(int pos) {                           // Move down list to "pos" position
-            assert((pos >= 0) && (pos <= listSize), "Position out of range");
+            Assert((pos >= 0) && (pos <= listSize), "Position out of range");
             curr = head;
             for (int i = 0; i < pos; ++i) {
                 curr = curr->next;
@@ -118,7 +130,8 @@ class LList : public List<T> {
         }
 
         const T& getValue() const {                         // Return current element
-            assert(curr->next != 0, "No value");
+            Assert(curr->next != 0, "No value");
             return curr->next->element;
         }
 };
+
