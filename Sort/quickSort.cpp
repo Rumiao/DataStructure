@@ -37,7 +37,7 @@ void quickSort(T A[], int first, int last) {
     }
     int pivot_index = findPivot(A, first, last);        // Find the pivot'index, this pivot_value may work good
     Swap(A, pivot_index, last);                         // Put pivot at end
-    int k = partition<T>(A, first - 1, last, A[last]);  //
+    int k = partition<T>(A, first - 1, last, A[last]);
     Swap(A, k, last);
     quickSort(A, first, k - 1);
     quickSort(A, k + 1, last);
