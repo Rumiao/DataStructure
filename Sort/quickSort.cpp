@@ -1,6 +1,3 @@
-#include <iostream>
-
-
 /* Quick sort implementation */
 
 template <typename T>
